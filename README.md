@@ -10,8 +10,13 @@ extension, no interactive question hand-off, just sound + notification.
 
 ## Requirements
 
-- macOS (uses `afplay` for sound and `osascript` for notifications)
 - Node.js 18+
+- A platform with sound + notification support:
+  - **macOS** — `afplay` + `osascript` (built in)
+  - **Windows** — PowerShell (built in; uses `System.Windows.Media.MediaPlayer`
+    for sound and a tray balloon for notifications)
+  - **Linux** — one of `ffplay` / `paplay` / `aplay` / `mpg123` / `cvlc` for
+    sound, and `notify-send` for notifications
 
 ## How it works
 
@@ -21,9 +26,12 @@ deserves attention, plays the mapped sound, and shows a macOS notification.
 
 ```
 agent hook  ──>  hooks/<agent>-*-bridge.mjs  ──>  hooks/ai-event-bridge.mjs
-                                                      ├─ play sound (afplay)
-                                                      └─ macOS notification (osascript)
+                                                      ├─ play sound  (hooks/lib/platform.mjs)
+                                                      └─ notification (hooks/lib/platform.mjs)
 ```
+
+Platform-specific playback/notification lives in `hooks/lib/platform.mjs`, so
+the rest of the code is OS-agnostic.
 
 User data (sounds + which sound maps to which event) lives in
 `~/.claude-notifier/` and is seeded automatically on first run from
@@ -39,22 +47,32 @@ User data (sounds + which sound maps to which event) lives in
 
 ## Install
 
-Copy (or symlink) this project somewhere stable and point your agent's hooks at
-the bridge scripts. The examples assume `~/.claude/bin/claude-notifier`:
+The cross-platform installer copies the project to
+`~/.claude/bin/claude-notifier` and merges the Claude Code hooks (`Stop` +
+`Elicitation`) into `~/.claude/settings.json`. It's idempotent — safe to re-run.
 
 ```sh
-mkdir -p ~/.claude/bin
-cp -R /path/to/claude-notifier ~/.claude/bin/claude-notifier
+# macOS / Linux
+node scripts/install.mjs
+# or: ./scripts/install.sh
 ```
 
-Then wire up the hooks for whichever agents you use (see `config/`):
+```powershell
+# Windows
+node scripts\install.mjs
+# or: .\scripts\install.ps1
+```
 
-- **Claude Code** — merge `config/claude-hooks.example.json` into
-  `~/.claude/settings.json`.
-- **Gemini CLI** — merge `config/gemini-settings.example.json` into your Gemini
-  settings.
-- **Codex** — merge `config/codex-hooks.example.json` into your Codex hooks.
-- **GitHub Copilot** — merge `config/copilot-hooks.example.json`.
+Useful flags: `--dest <dir>` (custom location), `--no-claude` (skip editing
+settings.json), `--uninstall` (remove install + the hooks it added).
+
+The installer prints ready-to-paste snippets for the other agents. To wire them
+up by hand instead, see the examples in `config/`:
+
+- **Claude Code** — `config/claude-hooks.example.json` (done automatically by the installer)
+- **Gemini CLI** — `config/gemini-settings.example.json`
+- **Codex** — `config/codex-hooks.example.json`
+- **GitHub Copilot** — `config/copilot-hooks.example.json`
 
 ## Try it
 

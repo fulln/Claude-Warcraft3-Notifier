@@ -5,6 +5,8 @@
   "type": "module",
   "description": "Play a sound and a macOS notification when Claude Code / Gemini / Codex / Copilot hooks fire.",
   "scripts": {
+    "install:hooks": "node scripts/install.mjs",
+    "uninstall:hooks": "node scripts/install.mjs --uninstall",
     "mock:needs-input": "node hooks/mock-event.mjs needs_input | node hooks/claude-event-bridge.mjs",
     "mock:failure": "node hooks/mock-event.mjs failure | node hooks/claude-event-bridge.mjs",
     "mock:done": "node hooks/mock-event.mjs done | node hooks/claude-event-bridge.mjs",

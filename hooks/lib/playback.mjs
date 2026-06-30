@@ -1,7 +1,5 @@
 import { access } from "node:fs/promises";
 import { join } from "node:path";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
 
 import {
   defaultRootDir,
@@ -9,8 +7,7 @@ import {
   readSoundLibrary,
   readSoundMappings,
 } from "./sound-config.mjs";
-
-const execFileAsync = promisify(execFile);
+import { playFile } from "./platform.mjs";
 
 export async function resolveSoundForEvent(event, { rootDir = defaultRootDir() } = {}) {
   const slot = event?.soundSlot ?? event?.type ?? "running";
@@ -48,7 +45,7 @@ export async function resolveSoundForEvent(event, { rootDir = defaultRootDir() }
 }
 
 export async function previewSound(filePath) {
-  await execFileAsync("afplay", [filePath]);
+  await playFile(filePath);
 }
 
 export async function playSoundForEvent(event, options = {}) {

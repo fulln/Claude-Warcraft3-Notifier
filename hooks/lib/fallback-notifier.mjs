@@ -1,9 +1,9 @@
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
+import { notify } from "./platform.mjs";
 
-const execFileAsync = promisify(execFile);
-
+/**
+ * Show a desktop notification on the current platform (macOS / Windows / Linux).
+ * Named `showMacNotification` for backwards compatibility with existing callers.
+ */
 export async function showMacNotification(title, message) {
-  const script = `display notification ${JSON.stringify(message)} with title ${JSON.stringify(title)}`;
-  await execFileAsync("osascript", ["-e", script]);
+  await notify(title, message);
 }

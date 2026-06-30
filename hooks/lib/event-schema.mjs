@@ -6,7 +6,7 @@ const DEFAULT_SEVERITY = {
   done: "info",
 };
 
-const ATTENTION_TYPES = new Set(["needs_input", "done"]);
+const ATTENTION_TYPES = new Set(["needs_input", "done", "failure"]);
 
 export function normalizeEvent(raw = {}, env = process.env) {
   const source = detectSource(raw, env);

@@ -1,12 +1,45 @@
-# claude-notifier
+# Claude Notifier
 
 A tiny, dependency-free notifier for AI coding agents. When a hook fires
 (Claude Code, Gemini, Codex, or GitHub Copilot finishing a turn, asking for
-input, or hitting an error), it **plays a sound** and shows a **macOS
-notification**.
+input, or hitting an error), it **plays a sound** and shows a **desktop
+notification** — on macOS, Windows, and Linux.
 
 This is a stripped-down sibling of `claude-raycast-notifier` — no Raycast
 extension, no interactive question hand-off, just sound + notification.
+
+## Quick install
+
+Requires `git` and Node.js 18+. The installer is dependency-free, idempotent,
+and copies itself to `~/.claude/bin/claude-notifier`, so the clone can be thrown
+away afterwards.
+
+```sh
+# macOS / Linux — clone and install
+git clone --depth 1 https://github.com/fulln/claude-notifier
+node claude-notifier/scripts/install.mjs
+```
+
+```powershell
+# Windows
+git clone --depth 1 https://github.com/fulln/claude-notifier
+node claude-notifier\scripts\install.mjs
+```
+
+One-liner (clones to a temp dir, installs, cleans up):
+
+```sh
+# macOS / Linux
+d=$(mktemp -d) && git clone --depth 1 https://github.com/fulln/claude-notifier "$d" && node "$d/scripts/install.mjs"; rm -rf "$d"
+```
+
+```powershell
+# Windows PowerShell
+$d="$env:TEMP\claude-notifier-$(Get-Random)"; git clone --depth 1 https://github.com/fulln/claude-notifier $d; node "$d\scripts\install.mjs"; Remove-Item -Recurse -Force $d
+```
+
+This installs the Claude Code hooks automatically. To wire up Codex / Gemini /
+Copilot too, the installer prints ready-to-paste snippets (and see `config/`).
 
 ## Requirements
 
@@ -85,6 +118,27 @@ npm run mock:failure
 npm run mock:success
 ```
 
+## Manage sounds
+
+Add, swap, and preview sounds from the CLI — no JSON editing required (this
+replaces the old Raycast sound manager). Works against the data dir on any OS:
+
+```sh
+node scripts/sounds.mjs list                  # show slots + library
+node scripts/sounds.mjs add ./my.mp3 "My Sound"   # import a custom sound
+node scripts/sounds.mjs map done ./my.mp3     # import + map a file to a slot in one go
+node scripts/sounds.mjs map needs_input bright-success   # map an existing sound
+node scripts/sounds.mjs play done             # preview a slot or soundId
+node scripts/sounds.mjs disable success       # silence a slot
+node scripts/sounds.mjs remove <soundId>      # delete an imported sound
+```
+
+If installed, run it from the install dir, e.g.
+`node ~/.claude/bin/claude-notifier/scripts/sounds.mjs list`. Any audio format
+your platform's player supports (`.wav`, `.mp3`, …) can be imported.
+
+Slots: `needs_input`, `failure`, `done`, `success`, `running`.
+
 ## Configuration
 
 Environment variables:
@@ -93,7 +147,5 @@ Environment variables:
 - `CLAUDE_NOTIFIER_STATE_FILE` — override the state file path.
 - `CLAUDE_NOTIFIER_MAX_RECENT` — how many recent events to keep (default `10`).
 
-To change which sound plays for an event, edit
-`~/.claude-notifier/sound-mappings.json`. To add your own sound, drop the file
-into `~/.claude-notifier/sounds/` and add an entry to
-`~/.claude-notifier/sound-library.json`.
+The CLI above writes `~/.claude-notifier/sound-mappings.json` and
+`sound-library.json` for you; you can still edit those by hand if you prefer.

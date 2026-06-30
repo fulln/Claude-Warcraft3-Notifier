@@ -65,7 +65,7 @@ async function readJson(file, fallback) {
 
 async function copyProject() {
   await mkdir(DEST, { recursive: true });
-  for (const item of ["hooks", "config", "sounds", "package.json", "README.md"]) {
+  for (const item of ["hooks", "scripts", "config", "sounds", "package.json", "README.md"]) {
     const src = join(PROJECT_ROOT, item);
     if (await exists(src)) {
       await cp(src, join(DEST, item), { recursive: true });

@@ -162,4 +162,4 @@ sounds via the sounds CLI. The non-voice tones (`*.wav`) are generated.
 
 ## Acknowledgements
 
-感谢 LinuxDO 社区的支持。
+感谢 [LinuxDO](https://linux.do/) 社区的支持。

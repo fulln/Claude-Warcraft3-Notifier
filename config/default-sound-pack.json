@@ -44,6 +44,12 @@
       "filename": "bright-success.wav",
       "frequencyHz": 990,
       "durationMs": 180
+    },
+    {
+      "id": "peasant-more-work",
+      "label": "Peasant: More work?",
+      "kind": "bundled",
+      "filename": "peasant-more-work.mp3"
     }
   ],
   "defaults": {
@@ -52,7 +58,7 @@
       "enabled": true
     },
     "failure": {
-      "soundId": "soft-alert",
+      "soundId": "peasant-more-work",
       "enabled": true
     },
     "done": {

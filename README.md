@@ -72,11 +72,14 @@ User data (sounds + which sound maps to which event) lives in
 
 | Event slot    | Fires when…                              | Default sound        |
 | ------------- | ---------------------------------------- | -------------------- |
-| `needs_input` | the agent needs your input / attention   | Claude Ready To Work |
-| `failure`     | a command/session failed                 | Soft Alert           |
-| `done`        | the agent finished the task              | Claude Jobs Done     |
+| `needs_input` | the agent needs your input / attention   | Ready to work!       |
+| `failure`     | a command/session failed                 | Peasant: More work?  |
+| `done`        | the agent finished the task              | Job's done!          |
 | `success`     | a command completed (off by default)     | Bright Success       |
 | `running`     | progress event (off by default)          | —                    |
+
+The defaults lean into the Warcraft III theme (peasant/peon voice lines). Swap
+any of them — including for plain non-themed tones — with the sounds CLI below.
 
 ## Install
 
@@ -149,3 +152,10 @@ Environment variables:
 
 The CLI above writes `~/.claude-notifier/sound-mappings.json` and
 `sound-library.json` for you; you can still edit those by hand if you prefer.
+
+## Sound credits
+
+The bundled Warcraft III voice lines (peasant/peon) are © Blizzard
+Entertainment and are included here for personal, non-commercial use only. If
+you redistribute or use this in a different context, replace them with your own
+sounds via the sounds CLI. The non-voice tones (`*.wav`) are generated.

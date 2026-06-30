@@ -1,0 +1,32 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "claude-notifier-needs-input",
+            "type": "command",
+            "command": "node ~/.claude/bin/claude-notifier/hooks/gemini-notification-bridge.mjs",
+            "timeout": 5000,
+            "description": "Play the needs_input sound and a macOS notification when Gemini emits a notification."
+          }
+        ]
+      }
+    ],
+    "AfterAgent": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "name": "claude-notifier-done",
+            "type": "command",
+            "command": "node ~/.claude/bin/claude-notifier/hooks/gemini-after-agent-bridge.mjs",
+            "timeout": 5000,
+            "description": "Play the done sound and a macOS notification when Gemini finishes a turn."
+          }
+        ]
+      }
+    ]
+  }
+}

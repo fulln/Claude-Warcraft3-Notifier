@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionEnd": [
+      {
+        "type": "command",
+        "bash": "node ~/.claude/bin/claude-notifier/hooks/copilot-session-end-bridge.mjs"
+      }
+    ]
+  }
+}

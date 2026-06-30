@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ~/.claude/bin/claude-notifier/hooks/claude-event-bridge.mjs 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Elicitation": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ~/.claude/bin/claude-notifier/hooks/claude-event-bridge.mjs 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}

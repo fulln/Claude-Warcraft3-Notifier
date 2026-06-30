@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ~/.claude/bin/claude-notifier/hooks/codex-stop-bridge.mjs"
+          }
+        ]
+      }
+    ]
+  }
+}

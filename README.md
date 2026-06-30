@@ -159,3 +159,7 @@ The bundled Warcraft III voice lines (peasant/peon) are © Blizzard
 Entertainment and are included here for personal, non-commercial use only. If
 you redistribute or use this in a different context, replace them with your own
 sounds via the sounds CLI. The non-voice tones (`*.wav`) are generated.
+
+## Acknowledgements
+
+感谢 LinuxDO 社区的支持。

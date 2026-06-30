@@ -4,9 +4,9 @@ Instructions for an AI agent asked to install this project from its GitHub URL.
 
 ## What this is
 
-**Claude Notifier** plays a sound + shows a desktop notification when an AI
-coding agent's hooks fire (Claude Code / Gemini / Codex / Copilot). Pure Node,
-no npm dependencies. Works on macOS, Windows, and Linux.
+**Claude-Warcraft3-Notifier** plays a sound + shows a desktop notification when
+an AI coding agent's hooks fire (Claude Code / Gemini / Codex / Copilot). Pure
+Node, no npm dependencies. Works on macOS, Windows, and Linux.
 
 ## Install (deterministic, non-interactive)
 
@@ -14,11 +14,11 @@ Requirements: `git` and Node.js 18+.
 
 1. Clone the repo (anywhere — a temp dir is fine):
    ```sh
-   git clone --depth 1 https://github.com/fulln/claude-notifier
+   git clone --depth 1 https://github.com/fulln/Claude-Warcraft3-Notifier
    ```
 2. Run the installer:
    ```sh
-   node claude-notifier/scripts/install.mjs
+   node Claude-Warcraft3-Notifier/scripts/install.mjs
    ```
    - It copies the project to `~/.claude/bin/claude-notifier` and merges the
      Claude Code `Stop` + `Elicitation` hooks into `~/.claude/settings.json`.

@@ -1,4 +1,4 @@
-# Claude Notifier
+# Claude-Warcraft3-Notifier
 
 A tiny, dependency-free notifier for AI coding agents. When a hook fires
 (Claude Code, Gemini, Codex, or GitHub Copilot finishing a turn, asking for
@@ -16,26 +16,26 @@ away afterwards.
 
 ```sh
 # macOS / Linux — clone and install
-git clone --depth 1 https://github.com/fulln/claude-notifier
-node claude-notifier/scripts/install.mjs
+git clone --depth 1 https://github.com/fulln/Claude-Warcraft3-Notifier
+node Claude-Warcraft3-Notifier/scripts/install.mjs
 ```
 
 ```powershell
 # Windows
-git clone --depth 1 https://github.com/fulln/claude-notifier
-node claude-notifier\scripts\install.mjs
+git clone --depth 1 https://github.com/fulln/Claude-Warcraft3-Notifier
+node Claude-Warcraft3-Notifier\scripts\install.mjs
 ```
 
 One-liner (clones to a temp dir, installs, cleans up):
 
 ```sh
 # macOS / Linux
-d=$(mktemp -d) && git clone --depth 1 https://github.com/fulln/claude-notifier "$d" && node "$d/scripts/install.mjs"; rm -rf "$d"
+d=$(mktemp -d) && git clone --depth 1 https://github.com/fulln/Claude-Warcraft3-Notifier "$d" && node "$d/scripts/install.mjs"; rm -rf "$d"
 ```
 
 ```powershell
 # Windows PowerShell
-$d="$env:TEMP\claude-notifier-$(Get-Random)"; git clone --depth 1 https://github.com/fulln/claude-notifier $d; node "$d\scripts\install.mjs"; Remove-Item -Recurse -Force $d
+$d="$env:TEMP\Claude-Warcraft3-Notifier-$(Get-Random)"; git clone --depth 1 https://github.com/fulln/Claude-Warcraft3-Notifier $d; node "$d\scripts\install.mjs"; Remove-Item -Recurse -Force $d
 ```
 
 This installs the Claude Code hooks automatically. To wire up Codex / Gemini /

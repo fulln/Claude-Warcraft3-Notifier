@@ -1,9 +1,9 @@
 {
-  "name": "claude-notifier",
+  "name": "claude-warcraft3-notifier",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Claude Notifier — play a sound and a desktop notification when Claude Code / Gemini / Codex / Copilot hooks fire (macOS / Windows / Linux).",
+  "description": "Claude-Warcraft3-Notifier — play a sound and a desktop notification when Claude Code / Gemini / Codex / Copilot hooks fire (macOS / Windows / Linux).",
   "scripts": {
     "install:hooks": "node scripts/install.mjs",
     "uninstall:hooks": "node scripts/install.mjs --uninstall",
